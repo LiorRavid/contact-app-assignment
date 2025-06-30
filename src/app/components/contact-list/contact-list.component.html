@@ -1,0 +1,19 @@
+<div class="list-container">
+  <div class="top-actions">
+    <button (click)="goToCreate()">+ New Contact</button>
+    <button (click)="addRandom()">+ Add Random Records</button>
+  </div>
+
+  <app-loader *ngIf="isLoading"></app-loader>
+
+  <ul>
+    <li *ngFor="let contact of contacts" (click)="goToDetail(contact.id)">
+      <img [src]="contact.imageUrl" width="40" height="40" />
+      <div>
+        <strong>{{ contact.name }}</strong><br />
+        {{ contact.email }}
+        <span *ngIf="!contact.synced" style="color: red; font-size: 0.8rem">[Unsynced]</span>
+      </div>
+    </li>
+  </ul>
+</div>

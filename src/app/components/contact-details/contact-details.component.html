@@ -1,0 +1,63 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+  <div class="form-field">
+    <label>Name:</label>
+    <input type="text" formControlName="name" [class.invalid]="form.controls.name.invalid && form.controls.name.touched" [readonly]="!isEdit" />
+    <div *ngIf="form.controls.name.invalid && form.controls.name.touched">
+      <small *ngIf="form.controls.name.errors?.['required']">Name is required</small>
+      <small *ngIf="form.controls.name.errors?.['minlength']">Name is too short</small>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label>Email:</label>
+    <input type="email" formControlName="email" [class.invalid]="form.controls.email.invalid && form.controls.email.touched" [readonly]="!isEdit" />
+    <div *ngIf="form.controls.email.invalid && form.controls.email.touched">
+      <small *ngIf="form.controls.email.errors?.['required']">Email is required</small>
+      <small *ngIf="form.controls.email.errors?.['email']">Invalid email</small>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label>Phone:</label>
+    <input type="text" formControlName="phone" [class.invalid]="form.controls.phone.invalid && form.controls.phone.touched" [readonly]="!isEdit" />
+    <div *ngIf="form.controls.phone.invalid && form.controls.phone.touched">
+      <small *ngIf="form.controls.phone.errors?.['required']">Phone is required</small>
+      <small *ngIf="form.controls.phone.errors?.['pattern']">Phone must be 9–10 digits</small>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label>Cell:</label>
+    <input type="text" formControlName="cell" [class.invalid]="form.controls.cell.invalid && form.controls.cell.touched" [readonly]="!isEdit" />
+    <div *ngIf="form.controls.cell.invalid && form.controls.cell.touched">
+      <small *ngIf="form.controls.cell.errors?.['required']">Cell is required</small>
+      <small *ngIf="form.controls.cell.errors?.['pattern']">Cell must be 9–10 digits</small>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label>Age:</label>
+    <input type="number" formControlName="age" [class.invalid]="form.controls.age.invalid && form.controls.age.touched" [readonly]="!isEdit" />
+    <div *ngIf="form.controls.age.invalid && form.controls.age.touched">
+      <small *ngIf="form.controls.age.errors?.['required']">Age is required</small>
+      <small *ngIf="form.controls.age.errors?.['min']">Age must be positive</small>
+      <small *ngIf="form.controls.age.errors?.['max']">Too old :)</small>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label>Image URL:</label>
+    <input type="text" formControlName="imageUrl" [class.invalid]="form.controls.imageUrl.invalid && form.controls.imageUrl.touched" [readonly]="!isEdit" />
+    <div *ngIf="form.controls.imageUrl.invalid && form.controls.imageUrl.touched">
+      <small *ngIf="form.controls.imageUrl.errors?.['required']">Image URL is required</small>
+      <small *ngIf="form.controls.imageUrl.errors?.['pattern']">Must be a valid URL</small>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button type="submit" [disabled]="form.invalid || !isEdit">Save</button>
+    <button type="button" (click)="edit()" *ngIf="!isNew">Edit</button>
+    <button type="button" (click)="delete()" *ngIf="!isNew">Delete</button>
+    <button type="button" (click)="goBack()">Back</button>
+  </div>
+</form>

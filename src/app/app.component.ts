@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { SyncService } from './services/sync.service';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  template: `<router-outlet />`,
 })
 export class AppComponent {
-  title = 'contact-app';
+    constructor(private syncService: SyncService) {}
+
+  ngOnInit(): void {
+    this.syncService.init();
+  }
 }
